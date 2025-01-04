@@ -2,7 +2,7 @@
 #define G_2_ARRAYLIST_TYPES_H
 
 #ifdef __cplusplus
-#include <cstddef.h>
+#include <cstddef>
 #else
 #include <stddef.h>
 #endif
