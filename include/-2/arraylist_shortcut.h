@@ -12,7 +12,7 @@ typedef g_2_arraylist_t g_arraylist_t;
 #define g_arraylist_get_addr g_2_arraylist_get_addr
 #define g_arraylist_remove g_2_arraylist_remove
 #define g_arraylist_insert g_2_arraylist_insert
-#define g_arraylist_replace g_2_arraylistreplacet
+#define g_arraylist_replace g_2_arraylist_replace
 #define g_arraylist_shrink_to_fit g_2_arraylist_shrink_to_fit
 #define g_arraylist_dispose g_2_arraylist_dispose
 
