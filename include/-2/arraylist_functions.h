@@ -16,8 +16,11 @@
 extern "C" {
 #endif
 
-g_2_arraylist_t *g_2_arraylist(size_t capacity, size_t element_size,
-                               g_0_allocator_t *allocator);
+g_2_arraylist_t *g_2_arraylist_new(size_t capacity, size_t element_size,
+                                   g_0_allocator_t *allocator);
+
+g_err_t g_2_arraylist_init(size_t capacity, size_t element_size,
+                           g_0_allocator_t *allocator, g_2_arraylist_t *out);
 
 g_err_t g_2_arraylist_push(g_2_arraylist_t *self, size_t count,
                            const void *data, size_t *out_first_index);
@@ -40,6 +43,8 @@ g_err_t g_2_arraylist_replace(g_2_arraylist_t *self, size_t index,
                               const void *data_insert);
 
 g_err_t g_2_arraylist_shrink_to_fit(g_2_arraylist_t *self);
+
+void g_2_arraylist_deinit(g_2_arraylist_t *self);
 
 void g_2_arraylist_dispose(g_2_arraylist_t *self);
 

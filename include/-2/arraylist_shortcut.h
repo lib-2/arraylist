@@ -5,7 +5,8 @@
 
 typedef g_2_arraylist_t g_arraylist_t;
 
-#define g_arraylist g_2_arraylist
+#define g_arraylist_new g_2_arraylist_new
+#define g_arraylist_init g_2_arraylist_init
 #define g_arraylist_push g_2_arraylist_push
 #define g_arraylist_set g_2_arraylist_set
 #define g_arraylist_get g_2_arraylist_get
@@ -14,6 +15,7 @@ typedef g_2_arraylist_t g_arraylist_t;
 #define g_arraylist_insert g_2_arraylist_insert
 #define g_arraylist_replace g_2_arraylist_replace
 #define g_arraylist_shrink_to_fit g_2_arraylist_shrink_to_fit
+#define g_arraylist_deinit g_2_arraylist_deinit
 #define g_arraylist_dispose g_2_arraylist_dispose
 
 #endif

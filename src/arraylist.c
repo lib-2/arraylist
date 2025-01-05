@@ -5,22 +5,30 @@
 
 #include "-0_allocator.h"
 
-g_arraylist_t *g_arraylist(const size_t capacity, const size_t element_size,
-                           g_allocator_t *allocator) {
-  g_arraylist_t *const list = g_alloc(allocator, sizeof(g_arraylist_t));
-  if (!list)
+g_arraylist_t *g_arraylist_new(const size_t capacity, const size_t element_size,
+                               g_allocator_t *allocator) {
+  g_arraylist_t *const result = g_alloc(allocator, sizeof(g_arraylist_t));
+  if (!result)
     return NULL;
 
-  list->allocator = allocator;
-  list->capacity = capacity;
-  list->length = 0;
-  list->element_size = element_size;
-  list->data = g_alloc(allocator, capacity * element_size);
-  if (!list->data) {
-    g_dealloc(allocator, list);
+  if (!g_arraylist_init(capacity, element_size, allocator, result)) {
+    g_dealloc(allocator, result);
     return NULL;
   }
-  return list;
+  return result;
+}
+
+g_err_t g_arraylist_init(size_t capacity, size_t element_size,
+                         g_0_allocator_t *allocator, g_2_arraylist_t *out) {
+  out->allocator = allocator;
+  out->capacity = capacity;
+  out->length = 0;
+  out->element_size = element_size;
+  out->data = g_alloc(allocator, capacity * element_size);
+  if (!out->data) {
+    return true;
+  }
+  return false;
 }
 
 g_err_t g_arraylist_push(g_arraylist_t *self, const size_t count,
@@ -146,7 +154,11 @@ g_err_t g_arraylist_shrink_to_fit(g_arraylist_t *self) {
   return false;
 }
 
-void g_arraylist_dispose(g_arraylist_t *self) {
+void g_arraylist_deinit(g_2_arraylist_t *self) {
   g_dealloc(self->allocator, self->data);
+}
+
+void g_arraylist_dispose(g_arraylist_t *self) {
+  g_arraylist_deinit(self);
   g_dealloc(self->allocator, self);
 }
